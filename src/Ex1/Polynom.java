@@ -188,8 +188,10 @@ public class Polynom implements Polynom_able{
 
 
 	@Override
-	public boolean equals(Polynom_able p1) {
-		Iterator <Monom> poly_it = p1.iteretor();
+	public boolean equals(Object p1) {
+		if (p1 instanceof Polynom ) {
+			Polynom p2 = (Polynom) p1;
+		Iterator <Monom> poly_it = p2.iteretor();
 		boolean flag = false;
 		int i =0;
 		while (poly_it.hasNext()) {
@@ -207,6 +209,10 @@ public class Polynom implements Polynom_able{
 		}
 		if ( i != Polynom_new.size()) return false;
 		return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	@Override

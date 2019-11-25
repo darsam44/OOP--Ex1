@@ -11,12 +11,14 @@ class MonomJunitTest {
 	@Test
 	void testDerivative() {
 		String[] monoms = {"4x", "-x^2", "8x^3","-5x", "-9x^9"};
-		String[] testMonoms = {"4x", "-2x", "24x^2","-5", "-81x^8"};
+		String[] testMonoms = {"4", "-2x", "24x^2","-5", "-81x^8"};
 		for(int i=0;i<monoms.length;i++) {
 			Monom temp=new Monom(monoms[i]);
 			Monom temptest=new Monom(testMonoms[i]);
 			Monom tempDer = new Monom (temp.derivative());
-			tempDer.equals(temptest);
+			if(!tempDer.equals(temptest)) {
+				fail();
+			}
 		}
 	}
 
@@ -39,7 +41,9 @@ class MonomJunitTest {
 			mul.isZero();
 			Monom temp=new Monom("x^2");
 			temp.multipy(mul);
-			temp.isZero();
+			if(!temp.isZero()) {
+				fail();
+			}
 	}
 
 	@Test
@@ -49,7 +53,9 @@ class MonomJunitTest {
 		for(int i=0;i<monoms.length;i++) {
 			Monom temp=new Monom(monoms[i]);
 			Monom temptest=new Monom(monoms2[i]);
-			temp.equals(temptest);
+			if(!temp.equals(temptest)) {
+				fail();
+			}
 		}
 	}
 
@@ -62,7 +68,9 @@ class MonomJunitTest {
 			Monom temp=new Monom(monoms[i]);
 			Monom temptest=new Monom(testMonoms[i]);
 			temp.add(mul);
-			temp.equals(temptest);
+			if(!temp.equals(temptest)) {
+				fail();
+			}
 		}
 	}
 
@@ -75,7 +83,9 @@ class MonomJunitTest {
 			Monom temp=new Monom(monoms[i]);
 			Monom temptest=new Monom(testMonoms[i]);
 			temp.add(mul);
-			temp.equals(temptest);
+			if(!temp.equals(temptest)) {
+				fail();
+			}
 		}
 	}
 
@@ -98,7 +108,9 @@ class MonomJunitTest {
 			Monom temp=new Monom(monoms[i]);
 			Monom temptest=new Monom(testMonoms[i]);
 			temp.multipy(mul);
-			temp.equals(temptest);
+			if(!temp.equals(temptest)) {
+				fail();
+			}
 	}
 
 }
