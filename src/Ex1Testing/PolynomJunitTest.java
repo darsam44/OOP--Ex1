@@ -1,4 +1,6 @@
-package Ex1;
+package Ex1Testing;
+
+import Ex1.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 

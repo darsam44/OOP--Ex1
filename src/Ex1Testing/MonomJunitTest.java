@@ -1,4 +1,6 @@
-package Ex1;
+package Ex1Testing;
+
+import Ex1.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -33,12 +35,22 @@ class MonomJunitTest {
 
 	@Test
 	void testIsZero() {
-		fail("Not yet implemented");
+		Monom mul=new Monom("0");
+			mul.isZero();
+			Monom temp=new Monom("x^2");
+			temp.multipy(mul);
+			temp.isZero();
 	}
 
 	@Test
 	void testMonomString() {
-		fail("Not yet implemented");
+		String[] monoms = {"4x", "-x", "8","-5x^7", "-9x^6"};
+		String[] monoms2 = {"4.0x", "-1.0x", "8.0","-5.0x^7", "-9.0x^6"};
+		for(int i=0;i<monoms.length;i++) {
+			Monom temp=new Monom(monoms[i]);
+			Monom temptest=new Monom(monoms2[i]);
+			temp.equals(temptest);
+		}
 	}
 
 	@Test
@@ -55,18 +67,16 @@ class MonomJunitTest {
 	}
 
 	@Test
-	void testToString() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testIsMonom() {
-		fail("Not yet implemented");
-	}
-
-	@Test
 	void testEqualsMonom() {
-		fail("Not yet implemented");
+		String[] monoms = {"4x", "-x", "8x","-5x", "-9x"};
+		String[] testMonoms = {"13x", "8x", "17x","4x", "0"};
+		Monom mul=new Monom("9x");
+		for(int i=0;i<monoms.length;i++) {
+			Monom temp=new Monom(monoms[i]);
+			Monom temptest=new Monom(testMonoms[i]);
+			temp.add(mul);
+			temp.equals(temptest);
+		}
 	}
 
 	@Test
