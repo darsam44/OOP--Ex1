@@ -179,9 +179,9 @@ class PolynomJunitTest {
 		}
 	}
 
-//	@Test
-//	void testInitFromString() {
-//		fail("Not yet implemented");
-//	}
+	@Test
+	void testInitFromString() {
+		fail("Not yet implemented");
+	}
 
 }
