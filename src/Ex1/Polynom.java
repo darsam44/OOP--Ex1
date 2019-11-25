@@ -135,6 +135,7 @@ public class Polynom implements Polynom_able{
 		}
 		Comparator<Monom> sort_Poly = new Monom_Comperator();
 		Polynom_new.sort(sort_Poly);
+		remove_zero();
 	}
 
 
@@ -211,8 +212,12 @@ public class Polynom implements Polynom_able{
 		return true;
 		}
 		else {
-			return false;
+			if (p1 instanceof Monom ) {
+				Monom moni_new = new Monom (this.toString());
+				p1.equals(moni_new);
+			}
 		}
+		return false;
 	}
 
 	@Override
@@ -313,10 +318,12 @@ public class Polynom implements Polynom_able{
 	 * @param m1: represent monom
 	 */
 	public void multiply(Monom m1) {
+		Monom m2 = new Monom (m1);
 		Polynom n_poly=new Polynom();
 		for(int i=0;i<Polynom_new.size();i++) {
-			Polynom_new.get(i).multipy(m1);
+			Polynom_new.get(i).multipy(m2);
 		}
+		remove_zero();
 	}
 
 	/**

@@ -211,13 +211,20 @@ public class Monom implements function{
 	 * @return true or false
 	 */
 
-	public boolean equals (Monom m1) {
+	public boolean equals (Object other) {
+		if ( other instanceof Monom) {
+			Monom m1 = (Monom) other;
 		if ( this._coefficient ==0 && m1._coefficient==0) return true;
 		double between = this._coefficient - m1._coefficient;
 		if (Math.abs(between) <= EPSILON && this._power == m1._power) return true;
-		else {
-			return false;
 		}
+		else {
+		if ( other instanceof Polynom) {
+			Polynom poly_new = new Polynom (this.toString());
+			return other.equals(poly_new);
+		}
+		}
+		return false;
 	}
 
 	//****************** Private Methods and Data *****************

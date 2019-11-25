@@ -59,8 +59,6 @@ public class ComplexFunction implements complex_function {
 		case "min" : 
 			if (this.left.f(x) < this.right.f(x)) return this.left.f(x);
 		else return this.right.f(x);
-			
-		case "None" : return this.left.f(x);
 		
 		case "comp" : 
 			if (this.right != null ) {
@@ -76,9 +74,16 @@ public class ComplexFunction implements complex_function {
 		return 0;
 	}
 
+	// need to finish
 	@Override
 	public function initFromString(String s) {
-		// TODO Auto-generated method stub
+		if ( s.indexOf("(") == -1 || s.indexOf(")") == -1  ) {
+			Polynom poly = new Polynom (s);
+		}
+		int opener = s.indexOf("(");
+		int speride = s.lastIndexOf(',');
+		
+		
 		return null;
 	}
 
@@ -161,6 +166,16 @@ public class ComplexFunction implements complex_function {
 	@Override
 	public Operation getOp() {
 		return this.OP;
+	}
+	
+	// to finish
+	@Override
+	public boolean equals (Object other) {
+	 if (other instanceof ComplexFunction) {
+		 ComplexFunction cf = (ComplexFunction) other;
+		 
+	 }
+	 return false;
 	}
 
 }

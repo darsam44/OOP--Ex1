@@ -96,7 +96,6 @@ public class PolynomTestMy {
 	}
 
 
-
 	public static void test1() {
 
 		Polynom poly = new Polynom ("x^3+5");
