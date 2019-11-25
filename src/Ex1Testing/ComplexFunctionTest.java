@@ -5,6 +5,12 @@ package Ex1Testing;
  */
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+import Ex1.*;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
 
 class ComplexFunctionTest {
 	public static final double EPS = 0.00001;
