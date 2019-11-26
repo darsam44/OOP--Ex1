@@ -181,7 +181,13 @@ class PolynomJunitTest {
 
 	@Test
 	void testInitFromString() {
-		fail("Not yet implemented");
+		String[] polynoms = { "2x^5+3x^3", "7x^2-9", "-8x^4+5", "x^7" };
+		for(int i=0;i<polynoms.length;i++) {
+			Polynom polynom= new Polynom (polynoms[i]);			
+			if(!polynom.equals(polynom.initFromString(polynoms[i].toString()))) {
+				fail();
+			}
+		}
 	}
 
 }

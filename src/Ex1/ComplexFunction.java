@@ -76,17 +76,22 @@ public class ComplexFunction implements complex_function {
 
 	// need to finish
 	@Override
+	/**
+	 * this function will get and string as "((2x^2+3x+1)*(3x^4))"
+	 */
 	public function initFromString(String s) {
-		if ( s.indexOf("(") == -1 || s.indexOf(")") == -1  ) {
+		if ( s.indexOf("(") == -1 || s.indexOf(")") == -1  ) { //returns -1 if the char don't found in the string
 			Polynom poly = new Polynom (s);
 		}
+		
 		int opener = s.indexOf("(");
-		int speride = s.lastIndexOf(',');
+		int comma = s.lastIndexOf(',');
 		
 		
 		return null;
 	}
 
+//need to finish
 	@Override
 	public function copy() {
 		// TODO Auto-generated method stub

@@ -38,12 +38,12 @@ class MonomJunitTest {
 	@Test
 	void testIsZero() {
 		Monom mul=new Monom("0");
-			mul.isZero();
-			Monom temp=new Monom("x^2");
-			temp.multipy(mul);
-			if(!temp.isZero()) {
-				fail();
-			}
+		mul.isZero();
+		Monom temp=new Monom("x^2");
+		temp.multipy(mul);
+		if(!temp.isZero()) {
+			fail();
+		}
 	}
 
 	@Test
@@ -91,14 +91,28 @@ class MonomJunitTest {
 
 	@Test
 	void testInitFromString() {
-		fail("Not yet implemented");
+		String[] monoms = { "0", "4x", "-x", "8","12x^2", "9x^7"};
+		for(int i=0;i<monoms.length;i++) {
+			Monom monom= new Monom (monoms[i]);			
+			if(!monom.equals(monom.initFromString(monoms[i].toString()))) {
+				fail();
+			}
+		}
 	}
 
 	@Test
 	void testCopy() {
-		fail("Not yet implemented");
-	}
+		String[] monoms = { "0", "4x", "-x", "8","12x^2", "9x^7"};
+		for(int i=0;i<monoms.length;i++) {
+			Monom monom= new Monom (monoms[i]);			
+			if(!monom.equals(monom.copy())) {
+				fail();
+			}
+			
+			}
+		}
 	
+
 	@Test
 	void testMultipy() {
 		String[] monoms = { "0", "4x", "-x", "8","12x^2", "9x^7"};
@@ -111,7 +125,7 @@ class MonomJunitTest {
 			if(!temp.equals(temptest)) {
 				fail();
 			}
-	}
+		}
 
-}
+	}
 }
