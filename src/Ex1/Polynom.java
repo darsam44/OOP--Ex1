@@ -1,9 +1,10 @@
 package Ex1;
 import java.util.ArrayList;
+
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.function.Predicate;
-import myMath.Monom;
+import Ex1.Monom;
 
 /**
  * This class represents a Polynom with add, multiply functionality, it also should support the following:
@@ -359,8 +360,8 @@ public class Polynom implements Polynom_able{
 
 	@Override
 	public function initFromString(String s) {
-		// TODO Auto-generated method stub
-		return null;
+		function polynom= new Polynom(s);
+		return polynom;
 	}
 
 

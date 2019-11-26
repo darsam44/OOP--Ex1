@@ -243,14 +243,14 @@ public class Monom implements function{
 
 	@Override
 	public function initFromString(String s) {
-		// TODO Auto-generated method stub
-		return null;
+	 function monom = new Monom (s);
+	 return monom;
 	}
 
 	@Override
 	public function copy() {
-		// TODO Auto-generated method stub
-		return null;
+		function monom_copy=new Monom (this.toString());
+		return monom_copy;
 	}
 
 
