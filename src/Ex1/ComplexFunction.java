@@ -47,19 +47,19 @@ public class ComplexFunction implements complex_function {
 		switch(OP.toString().toLowerCase()) {
 
 		case "plux" : return this.left.f(x) + this.right.f(x);
-		
+
 		case "mul" : return this.left.f(x) * this.right.f(x);
-		
+
 		case "div" : return this.left.f(x) / this.right.f(x);
-		
+
 		case "max" : 
 			if (this.left.f(x) > this.right.f(x)) return this.left.f(x);
-		else return this.right.f(x);
-		
+			else return this.right.f(x);
+
 		case "min" : 
 			if (this.left.f(x) < this.right.f(x)) return this.left.f(x);
-		else return this.right.f(x);
-		
+			else return this.right.f(x);
+
 		case "comp" : 
 			if (this.right != null ) {
 				return this.left.f(this.right.f(x));
@@ -68,30 +68,59 @@ public class ComplexFunction implements complex_function {
 				// need to check
 				return this.left.f(x);
 			}
- 		}
+		}
 
 
 		return 0;
 	}
 
-	// need to finish
 	@Override
 	/**
 	 * this function will get and string as "((2x^2+3x+1)*(3x^4))"
 	 */
-	public function initFromString(String s) {
-		if ( s.indexOf("(") == -1 || s.indexOf(")") == -1  ) { //returns -1 if the char don't found in the string
+	public function initFromString(String s) { 
+		int i =0;
+		if ( s.indexOf("(") == -1 && s.indexOf(")") == -1  ) { //returns -1 if the char don't found in the string
 			Polynom poly = new Polynom (s);
+			function function= new ComplexFunction(poly);
+			return function;
 		}
-		
-		int opener = s.indexOf("(");
-		int comma = s.lastIndexOf(',');
-		
-		
-		return null;
+		else {
+			while (s.charAt(i) != '(') {
+				i++;
+			}
+			int split=LocationSplit(s , i+1);
+			String sub1=s.substring(i+1, split);
+			String sub2=s.substring(split+1,s.length()-1);
+			String sub3 = s.substring(0, i);
+			function left = initFromString(sub1);
+			function right = initFromString(sub2);
+			function function= new ComplexFunction(sub3, left, right);
+			return function;
+		}
+
 	}
 
-//need to finish
+	public int LocationSplit (String s , int i) {
+		int comma=0;
+		int opener=1;
+		int locationSplit=0;
+		while(i != s.length()) {
+			if(s.charAt(i)=='(') {
+				opener++;
+			}
+			if(s.charAt(i)==',') {
+				comma++;
+			}
+			if(comma==opener && s.charAt(i) == ',') {
+				locationSplit=i;
+			}
+			i++;
+		}
+		return locationSplit;
+	}
+
+	//need to finish
 	@Override
 	public function copy() {
 		// TODO Auto-generated method stub
@@ -172,15 +201,15 @@ public class ComplexFunction implements complex_function {
 	public Operation getOp() {
 		return this.OP;
 	}
-	
+
 	// to finish
 	@Override
 	public boolean equals (Object other) {
-	 if (other instanceof ComplexFunction) {
-		 ComplexFunction cf = (ComplexFunction) other;
-		 
-	 }
-	 return false;
+		if (other instanceof ComplexFunction) {
+			ComplexFunction cf = (ComplexFunction) other;
+
+		}
+		return false;
 	}
 
 }

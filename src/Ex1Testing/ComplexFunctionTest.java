@@ -20,8 +20,8 @@ class ComplexFunctionTest {
 		Monom m2 = new Monom(3,3);
 		ComplexFunction cf = new ComplexFunction("plus", m1,m2);
 	//	System.out.println(cf);
-//		cf.mul(m2);
-//		System.out.println(cf);
+		cf.mul(m2);
+		System.out.println(cf);
 		Polynom p = new Polynom();
 		p.add(m1);
 		p.add(m2);

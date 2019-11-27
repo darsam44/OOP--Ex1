@@ -86,15 +86,20 @@ the are of the polynom -4.0x^7+9.0 from -3 to 3 with eps= 0.000001 is : 3316.346
 
 public class PolynomTestMy {
 	public static void main(String[] args) {
-		test1();
-		test2();
-		test3();
-		test4();
-		test5();
-		test6();
-		test7();
+//		test1();
+//		test2();
+//		test3();
+//		test4();
+//		test5();
+//		test6();
+//		test7();
+		test8();
 	}
 
+	public static void test8() {
+		ComplexFunction cf = new ComplexFunction(new Polynom ("-1.0x^4 +2.4x^2 +3.1"));
+		function f = cf.initFromString("plus(-1.0x^4 +2.4x^2 +3.1,+0.1x^5 -1.2999999999999998x +5.0)");
+	}
 
 	public static void test1() {
 

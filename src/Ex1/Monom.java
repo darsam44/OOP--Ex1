@@ -76,6 +76,7 @@ public class Monom implements function{
 	 */
 
 	public Monom(String s) {
+		s=s.strip();
 		s= s.toLowerCase();
 		String a = "";
 		String p = "";
