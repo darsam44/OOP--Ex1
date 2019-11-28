@@ -40,13 +40,11 @@ public class Polynom implements Polynom_able{
 		int i=0;
 		String monom1 = "";
 		while (i <= s.length() ) {
-			if (i==0 && s.charAt(i) == '-') {
+			if (i==0 && (s.charAt(i) == '-' || s.charAt(i)=='+')) {
 				monom1+=s.charAt(i);
 				i++;
 			}
-			if (i==0 && s.charAt(i) == '+') { //+5x isn't vaild
-				throw new RuntimeException("ERR The function isn't vaild ");
-			}
+			
 			if(i < s.length() && s.charAt(i)!='+' && s.charAt(i) !='-') {
 				monom1+=s.charAt(i);
 				i++;

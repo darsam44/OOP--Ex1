@@ -97,9 +97,13 @@ public class PolynomTestMy {
 	}
 
 	public static void test8() {
+		Monom mon= new Monom("+1x");
+		System.out.println(mon);
 		ComplexFunction cf = new ComplexFunction(new Polynom ("-1.0x^4 +2.4x^2 +3.1"));
-		function f = cf.initFromString("plus(-1.0x^4 +2.4x^2 +3.1,+0.1x^5 -1.2999999999999998x +5.0)");
+		function f= cf.initFromString("plus(-1.0x^4 +2.4x^2 +3.1,+0.1x^5 -1.2999999999999998x +5.0)");
+		System.out.println(f.toString());
 	}
+	
 
 	public static void test1() {
 

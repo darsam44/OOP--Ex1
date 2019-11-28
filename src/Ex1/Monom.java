@@ -170,7 +170,7 @@ public class Monom implements function{
 	public boolean IsMonom (String s) {	
 		int i=0;
 		int count = 0;
-		if (s.charAt(0) == '-' && s.length() > 1) {
+		if ((s.charAt(0) == '-' || s.charAt(0) == '+') && s.length() > 1) {
 			i++;
 		}
 		while(( i < s.length()) &&( s.charAt(i) != 'x' )&& (s.charAt(i) >= '0' || s.charAt(i) <= '9' || s.charAt(i) == '.')) {

@@ -16,19 +16,19 @@ public class ComplexFunction implements complex_function {
 		}
 
 		switch(op.toLowerCase()) {
-		case "Plus" :OP = Operation.Plus;
+		case "plus" :OP = Operation.Plus;
 		break;
-		case "Times" :OP = Operation.Times;
+		case "times" :OP = Operation.Times;
 		break;
-		case "Divid" :OP = Operation.Divid;
+		case "divid" :OP = Operation.Divid;
 		break;
-		case "Max" :OP = Operation.Max;
+		case "max" :OP = Operation.Max;
 		break;
-		case "Min" :OP = Operation.Min;
+		case "min" :OP = Operation.Min;
 		break;
-		case "Comp" :OP = Operation.Comp;
+		case "comp" :OP = Operation.Comp;
 		break;
-		case "None" :OP = Operation.None;
+		case "none" :OP = Operation.None;
 		break;
 		default: OP = Operation.Error;
 		break;
@@ -46,7 +46,7 @@ public class ComplexFunction implements complex_function {
 
 		switch(OP.toString().toLowerCase()) {
 
-		case "plux" : return this.left.f(x) + this.right.f(x);
+		case "plus" : return this.left.f(x) + this.right.f(x);
 
 		case "mul" : return this.left.f(x) * this.right.f(x);
 
@@ -74,9 +74,11 @@ public class ComplexFunction implements complex_function {
 		return 0;
 	}
 
+	
+	//needs to build junit
 	@Override
 	/**
-	 * this function will get and string as "((2x^2+3x+1)*(3x^4))"
+	 * this function gets a string and init it to function 
 	 */
 	public function initFromString(String s) { 
 		int i =0;
@@ -101,7 +103,13 @@ public class ComplexFunction implements complex_function {
 
 	}
 
-	public int LocationSplit (String s , int i) {
+	/**
+	 * 
+	 * @param s gets an string that represents a complex function
+	 * @param i location after the "("
+	 * @return the location of the split (left and right)
+	 */
+	private int LocationSplit (String s , int i) {
 		int comma=0;
 		int opener=1;
 		int locationSplit=0;
@@ -120,11 +128,15 @@ public class ComplexFunction implements complex_function {
 		return locationSplit;
 	}
 
-	//need to finish
+	
+	//needs to build junit
+	/**
+	 * this function will copy the complex function
+	 */
 	@Override
 	public function copy() {
-		// TODO Auto-generated method stub
-		return null;
+		function copy= new ComplexFunction(this.OP.toString(), this.left, this.right);
+		return copy;
 	}
 
 	@Override
@@ -202,14 +214,52 @@ public class ComplexFunction implements complex_function {
 		return this.OP;
 	}
 
-	// to finish
+	//needs to build junit
+	/**
+	 * this function check if the object is similar to our complex function
+	 */
 	@Override
 	public boolean equals (Object other) {
+		boolean equals=false;
 		if (other instanceof ComplexFunction) {
 			ComplexFunction cf = (ComplexFunction) other;
-
+			if(((ComplexFunction) other).left==this.left) {
+				if(((ComplexFunction) other).OP==this.OP) {
+					if(((ComplexFunction) other).right()==this.right) {
+						equals=true;
+					}
+				}
+			}
 		}
-		return false;
+		return equals;
 	}
+	
+	
+	//needs to build junit
+	 /**
+	  * 
+	  * @return string to print the function
+	  */
+	public String toString() {
+		String ans="";
+		if(this.OP!=Operation.None) { //check if this.op=None
+			ans+=this.OP;
+			ans+="(";
+		}
+		if(this.left!=null) {
+			ans+=this.left;
+			
+		}
+		
+		if(this.right!=null) {
+			ans+=" , ";
+			ans+=this.right;
+			ans+=")";
+		}
+		
+		
+		return ans;
+	}
+	
 
 }
