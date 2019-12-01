@@ -9,10 +9,10 @@ public class ComplexFunction implements complex_function {
 	public ComplexFunction (String op, function left , function right) {
 
 		if ( left != null ) {
-			this.left = left;
+			this.left = left.copy();
 		}
 		if ( right != null ) {
-			this.right = right;
+			this.right = right.copy();
 		}
 
 		switch(op.toLowerCase()) {
@@ -36,7 +36,7 @@ public class ComplexFunction implements complex_function {
 		}
 	}
 	public ComplexFunction (function left) {
-		this.left = left;
+		this.left = left.copy();
 		this.OP = Operation.None;
 	}
 
@@ -48,9 +48,9 @@ public class ComplexFunction implements complex_function {
 
 		case "plus" : return this.left.f(x) + this.right.f(x);
 
-		case "mul" : return this.left.f(x) * this.right.f(x);
+		case "times" : return this.left.f(x) * this.right.f(x);
 
-		case "div" : return this.left.f(x) / this.right.f(x);
+		case "divid" : return this.left.f(x) / this.right.f(x);
 
 		case "max" : 
 			if (this.left.f(x) > this.right.f(x)) return this.left.f(x);
@@ -143,9 +143,9 @@ public class ComplexFunction implements complex_function {
 	public void plus(function f1) {
 		if ( this.right != null ) {
 			function f = new ComplexFunction(OP.toString(), this.left,this.right);
-			this.left = f;
+			this.left = f.copy();
 		}
-		this.right = f1;
+		this.right = f1.copy();
 		this.OP = Operation.Plus;
 	}
 
@@ -153,9 +153,9 @@ public class ComplexFunction implements complex_function {
 	public void mul(function f1) {
 		if ( this.right != null ) {
 			function f = new ComplexFunction(OP.toString(), this.left,this.right);
-			this.left = f;
+			this.left = f.copy();
 		}
-		this.right = f1;
+		this.right = f1.copy();
 		this.OP = Operation.Times;
 	}
 
@@ -163,9 +163,9 @@ public class ComplexFunction implements complex_function {
 	public void div(function f1) {
 		if ( this.right != null ) {
 			function f = new ComplexFunction(OP.toString(), this.left,this.right);
-			this.left = f;
+			this.left = f.copy();
 		}
-		this.right = f1;
+		this.right = f1.copy();
 		this.OP = Operation.Divid;
 	}
 
@@ -173,9 +173,9 @@ public class ComplexFunction implements complex_function {
 	public void max(function f1) {
 		if ( this.right != null ) {
 			function f = new ComplexFunction(OP.toString(), this.left,this.right);
-			this.left = f;
+			this.left = f.copy();
 		}
-		this.right = f1;
+		this.right = f1.copy();
 		this.OP = Operation.Max;
 	}
 
@@ -183,9 +183,9 @@ public class ComplexFunction implements complex_function {
 	public void min(function f1) {
 		if ( this.right != null ) {
 			function f = new ComplexFunction(OP.toString(), this.left,this.right);
-			this.left = f;
+			this.left = f.copy();
 		}
-		this.right = f1;
+		this.right = f1.copy();
 		this.OP = Operation.Min;
 	}
 
@@ -193,9 +193,9 @@ public class ComplexFunction implements complex_function {
 	public void comp(function f1) {
 		if ( this.right != null ) {
 			function f = new ComplexFunction(OP.toString(), this.left,this.right);
-			this.left = f;
+			this.left = f.copy();
 		}
-		this.right = f1;
+		this.right = f1.copy();
 		this.OP = Operation.Comp;
 	}
 
@@ -242,8 +242,26 @@ public class ComplexFunction implements complex_function {
 	  */
 	public String toString() {
 		String ans="";
+		String op ="";
 		if(this.OP!=Operation.None) { //check if this.op=None
-			ans+=this.OP;
+			if (this.OP == Operation.Plus) {
+				ans+="plus";
+			}
+			if (this.OP == Operation.Times) {
+				ans+="mul";
+			}
+			if (this.OP == Operation.Divid) {
+				ans+="div";
+			}
+			if (this.OP == Operation.Max) {
+				ans+="max";
+			}
+			if (this.OP == Operation.Min) {
+				ans+="min";
+			}
+			if (this.OP == Operation.Comp) {
+				ans+="comp";
+			}
 			ans+="(";
 		}
 		if(this.left!=null) {

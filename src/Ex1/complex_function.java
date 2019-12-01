@@ -16,7 +16,7 @@ public interface complex_function extends function{
 	public void mul(function f1);
 	/** Divides this complex_function with the f1 complex_function
 	 * 
-	 * @param f1 the complex_function which will be divide this complex_function.
+	 * @param f1 the complex_function which will be divid this complex_function.
 	 */
 	public void div(function f1);
 	/** Computes the maximum over this complex_function and the f1 complex_function
@@ -35,11 +35,11 @@ public interface complex_function extends function{
 	 */
 	public void comp(function f1);	
 	/** returns the left side of the complex function - this side should always exists (should NOT be null).
-	 * @return a function representing the left side of this complex function
+	 * @return a function representing the left side of this complex funcation
 	 */
 	public function left();
 	/** returns the right side of the complex function - this side might not exists (aka equals null).
-	 * @return a function representing the left side of this complex function
+	 * @return a function representing the left side of this complex funcation
 	 */
 	public function right();
 	/**
