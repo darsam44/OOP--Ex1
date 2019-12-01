@@ -81,6 +81,7 @@ public class ComplexFunction implements complex_function {
 	 * this function gets a string and init it to function 
 	 */
 	public function initFromString(String s) { 
+		s=s.strip();
 		int i =0;
 		if ( s.indexOf("(") == -1 && s.indexOf(")") == -1  ) { //returns -1 if the char don't found in the string
 			Polynom poly = new Polynom (s);
@@ -91,9 +92,10 @@ public class ComplexFunction implements complex_function {
 			while (s.charAt(i) != '(') {
 				i++;
 			}
+			int last = s.lastIndexOf(')');
 			int split=LocationSplit(s , i+1);
 			String sub1=s.substring(i+1, split);
-			String sub2=s.substring(split+1,s.length()-1);
+			String sub2=s.substring(split+1,last);
 			String sub3 = s.substring(0, i);
 			function left = initFromString(sub1);
 			function right = initFromString(sub2);
