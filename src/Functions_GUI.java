@@ -12,11 +12,10 @@ public class Functions_GUI implements functions {
 	
 	ArrayList<function> functions_gui;
 	
-	
+	//dar change
 	@Override
 	public int size() {
-		
-		return 0;
+		return functions_gui.size();
 	}
 
 	@Override
@@ -25,16 +24,18 @@ public class Functions_GUI implements functions {
 		return false;
 	}
 
+	//dar change
 	@Override
 	public boolean contains(Object o) {
-		// TODO Auto-generated method stub
+		if (functions_gui.contains(o)) {
+			return true;
+		}
 		return false;
 	}
-
+	// dar change
 	@Override
 	public Iterator<function> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		return functions_gui.iterator();
 	}
 
 	@Override
@@ -55,9 +56,15 @@ public class Functions_GUI implements functions {
 		return false;
 	}
 
+	//dar change
 	@Override
 	public boolean remove(Object o) {
-		// TODO Auto-generated method stub
+		for( int i =0 ; i < functions_gui.size() ; i++) {
+			if ( functions_gui.get(i) == o) {
+				//need to delete
+				return true;
+			}
+		}
 		return false;
 	}
 
@@ -73,6 +80,7 @@ public class Functions_GUI implements functions {
 		return false;
 	}
 
+	
 	@Override
 	public boolean removeAll(Collection<?> c) {
 		// TODO Auto-generated method stub
@@ -85,10 +93,10 @@ public class Functions_GUI implements functions {
 		return false;
 	}
 
+	//dar change
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
-		
+		functions_gui.clear();
 	}
 
 	@Override
