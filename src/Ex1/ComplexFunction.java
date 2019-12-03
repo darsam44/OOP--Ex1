@@ -5,6 +5,12 @@ public class ComplexFunction implements complex_function {
 	function left;
 	function right;
 	Operation OP;
+	
+	public ComplexFunction () {
+		this.left=null;
+		this.right = null;
+		this.OP = Operation.Error;
+	}
 
 	public ComplexFunction (String op, function left , function right) {
 
