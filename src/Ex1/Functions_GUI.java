@@ -1,8 +1,10 @@
 package Ex1;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.Buffer;
 import java.util.ArrayList;
@@ -18,7 +20,6 @@ public class Functions_GUI implements functions {
 	
 	ArrayList<function> functions_gui;
 	
-	//dar change
 	@Override
 	public int size() {
 		return functions_gui.size();
@@ -87,7 +88,6 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public void initFromFile(String file) throws IOException {
-		// TODO Auto-generated method stub
 		functions_gui = new ArrayList<function>(); 
 		FileReader file_Strings = new FileReader(file);
 		BufferedReader reader = new BufferedReader(file_Strings);
@@ -95,20 +95,22 @@ public class Functions_GUI implements functions {
 		
 		while (line_String != null ) {
 			int loc = line_String.indexOf("f(x)=");
-			line_String = line_String.substring(loc+5); // cut untill the end of "f(x)="
-			line_String = line_String.strip();
+			line_String = line_String.substring(loc+5); // cut substring of "f(x)="
+			line_String = line_String.strip(); // cut the spaces
 			ComplexFunction cf_new = new ComplexFunction();
-			cf_new.initFromString(line_String);
-			functions_gui.add(cf_new);
-			line_String = reader.readLine();
+			cf_new.initFromString(line_String); 
+			functions_gui.add(cf_new); // add the function to the array
+			line_String = reader.readLine(); //skip to the next line
 		}
-		reader.close();
+		reader.close(); //close the reading
 	}
 
+	//shani
 	@Override
 	public void saveToFile(String file) throws IOException {
-		File file_Strings = new File ("D:\\eclipse\\Ex1\\file_Strings.txt");
-		
+		BufferedWriter writer= new BufferedWriter(new FileWriter(file));
+		writer.write(file);
+		writer.close();		
 	}
 
 	@Override

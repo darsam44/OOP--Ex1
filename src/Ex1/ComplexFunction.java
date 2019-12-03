@@ -6,12 +6,14 @@ public class ComplexFunction implements complex_function {
 	function right;
 	Operation OP;
 	
+	//Constructor that gets nothing
 	public ComplexFunction () {
 		this.left=null;
 		this.right = null;
 		this.OP = Operation.Error;
 	}
 
+	//build a complex function
 	public ComplexFunction (String op, function left , function right) {
 
 		if ( left != null ) {
@@ -41,6 +43,8 @@ public class ComplexFunction implements complex_function {
 
 		}
 	}
+	
+	//gets only left function
 	public ComplexFunction (function left) {
 		this.left = left.copy();
 		this.OP = Operation.None;
