@@ -93,7 +93,17 @@ public class PolynomTestMy {
 //		test5();
 //		test6();
 //		test7();
-		test8();
+//		test8();
+		test9();
+	}
+
+	private static void test9() {
+        StdDraw.setPenRadius(0.05);
+        StdDraw.setPenColor(StdDraw.BLUE);
+        StdDraw.point(0.5, 0.5);
+        StdDraw.setPenColor(StdDraw.MAGENTA);
+        StdDraw.line(0.2, 0.2, 0.8, 0.2);
+		
 	}
 
 	public static void test8() {

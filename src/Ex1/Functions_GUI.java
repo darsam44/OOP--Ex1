@@ -115,7 +115,8 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public void drawFunctions(int width, int height, Range rx, Range ry, int resolution) {
-		// TODO Auto-generated method stub
+		StdDraw.setCanvasSize(500, 500);
+		StdDraw.show();
 		
 	}
 
