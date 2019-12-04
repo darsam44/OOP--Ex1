@@ -56,16 +56,16 @@ class Functions_GUITest {
 	}
 
 	//@Test
-	void testDrawFunctions() {
+//	void testDrawFunctions() {
 		//_data.drawFunctions();
 	//	fail("Not yet implemented");
-	}
+//	}
 
 	@Test
-	void testDrawFunctionsIntIntRangeRangeInt() {
-		_data.drawFunctions();
+//	void testDrawFunctionsIntIntRangeRangeInt() {
+//		_data.drawFunctions();
 		//fail("Not yet implemented");
-	}
+//	}
 	public static Functions_GUI FunctionsFactory() {
 		Functions_GUI ans = new Functions_GUI();
 		String s1 = "3.1 +2.4x^2 -x^4";
@@ -91,14 +91,14 @@ class Functions_GUITest {
 		function cf6 = cf4.initFromString(s2);
 		ans.add(cf5.copy());
 		ans.add(cf6.copy());
-		ComplexFunction max = new ComplexFunction(ans.get(0).copy());
-		ComplexFunction min = new ComplexFunction(ans.get(0).copy());
-		for(int i=1;i<ans.size();i++) {
-			max.max(ans.get(i));
-			min.min(ans.get(i));
-		}
-		ans.add(max);
-		ans.add(min);
+//		ComplexFunction max = new ComplexFunction(ans.get(0).copy());
+//		ComplexFunction min = new ComplexFunction(ans.get(0).copy());
+//		for(int i=1;i<ans.size();i++) {
+//			max.max(ans.get(i));
+//			min.min(ans.get(i));
+//		}
+//		ans.add(max);
+//		ans.add(min);
 		
 		return ans;
 	}

@@ -82,7 +82,7 @@ the are of the polynom -4.0x^7+9.0 from -3 to 3 with eps= 0.000001 is : 3316.346
 
  */
 
-
+import java.awt.Color;
 
 public class PolynomTestMy {
 	public static void main(String[] args) {
@@ -94,7 +94,26 @@ public class PolynomTestMy {
 //		test6();
 //		test7();
 //		test8();
-		test9();
+//		test9();
+		int Width = 1000 , Height = 600 ,Resolution = 200;
+		double Range_X [] = {-10 , 10};
+		double Range_Y [] = {-5 , 15};
+		Range rx = new Range(Range_X[1] , Range_X[2]);
+		Range ry = new Range(Range_Y[1] , Range_Y[2]);
+		StdDraw.setCanvasSize(Width, Height);
+		// rescale the coordinate system
+				StdDraw.setXscale(rx.get_min(), rx.get_max());
+				StdDraw.setYscale(ry.get_min(), ry.get_max());
+				
+				//////// vertical lines
+				StdDraw.setPenColor(Color.LIGHT_GRAY);
+				for (double i = ry.get_min(); i <= ry.get_max(); i++) {
+					StdDraw.line(rx.get_min(), i, rx.get_max(), i);
+				}
+		//////// horizontal  lines
+				for (double i = rx.get_min(); i <= rx.get_max(); i++) {
+					StdDraw.line(i, ry.get_min(), i, ry.get_max());
+				}
 	}
 
 	private static void test9() {
