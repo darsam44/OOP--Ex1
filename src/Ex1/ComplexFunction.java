@@ -28,7 +28,8 @@ public class ComplexFunction implements complex_function {
 		switch(op.toLowerCase()) {
 		case "plus" :OP = Operation.Plus;
 		break;
-		case "times" :OP = Operation.Times;
+		//change times to mul
+		case "mul" :OP = Operation.Times;
 		break;
 		case "div" :OP = Operation.Divid;
 		break;
@@ -80,6 +81,8 @@ public class ComplexFunction implements complex_function {
 				// need to check
 				return this.left.f(x);
 			}
+		case "none" :
+			return this.left.f(x);
 		}
 
 
@@ -237,13 +240,16 @@ public class ComplexFunction implements complex_function {
 	public boolean equals (Object other) {
 		boolean equals=false;
 		int i=-10;
+		function temp=this.initFromString(other.toString());
+		int sim=0;
 		while(i<11) {
-				int sim=0;
-				while((this.f(i)-((ComplexFunction) other).f(i))<EPS) {
+				double ans1=(this.f(i));
+				double ans2= temp.f(i);
+				if((ans1-ans2)<EPS) {
+					sim++;
 					if(sim==21) { //need to be similar on all the values between -10 to 10
 						equals=true;
-					}
-					
+					}	
 				}
 			i++;
 		}

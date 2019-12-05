@@ -19,7 +19,6 @@ class ComplexFunctionTest {
 		Monom m1 = new Monom(2,2);
 		Monom m2 = new Monom(3,3);
 		ComplexFunction cf = new ComplexFunction("plus", m1,m2);
-	//	System.out.println(cf);
 		cf.mul(m2);
 		System.out.println(cf);
 		Polynom p = new Polynom();
@@ -48,7 +47,6 @@ class ComplexFunctionTest {
 			Monom m2 = new Monom(3,3);
 			ComplexFunction cf = new ComplexFunction("plus", m1,m2);
 			ComplexFunction cf3 = new ComplexFunction("plus", p1,p2);
-			//System.out.println(cf);
 			cf.mul(m2);
 			cf3.mul(m2);
 			String s = cf.toString();
@@ -75,7 +73,7 @@ class ComplexFunctionTest {
 		ComplexFunction cf = new ComplexFunction("plus", p1,p2);
 		cf.div(p1);
 		String s = cf.toString();
-		function cf5 = cf4.initFromString(s);
+		function cf5 = cf4.initFromString(s); //equals to cf
 		if(!cf.equals(cf5)) {
 			fail("ERR: "+cf+" should be equals to "+cf5);
 		}
