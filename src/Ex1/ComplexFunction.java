@@ -1,6 +1,8 @@
 package Ex1;
 
 public class ComplexFunction implements complex_function {
+	public static final double EPS = 0.00001;
+
 
 	function left;
 	function right;
@@ -231,6 +233,25 @@ public class ComplexFunction implements complex_function {
 	 * this function check if the object is similar to our complex function
 	 */
 	@Override
+	
+	public boolean equals (Object other) {
+		boolean equals=false;
+		int i=-10;
+		while(i<11) {
+				int sim=0;
+				while((this.f(i)-((ComplexFunction) other).f(i))<EPS) {
+					if(sim==21) { //need to be similar on all the values between -10 to 10
+						equals=true;
+					}
+					
+				}
+			i++;
+		}
+		return equals;
+			
+	}
+/*
+	//the first function that was above
 	public boolean equals (Object other) {
 		boolean equals=false;
 		if (other instanceof ComplexFunction) {
@@ -246,7 +267,7 @@ public class ComplexFunction implements complex_function {
 		return equals;
 	}
 	
-	
+	*/
 	//needs to build junit
 	 /**
 	  * 
