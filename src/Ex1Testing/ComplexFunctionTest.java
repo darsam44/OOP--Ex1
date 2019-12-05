@@ -71,8 +71,8 @@ class ComplexFunctionTest {
 		for(int i=1;i<s3.length;i++) {
 			p3.multiply(new Polynom(s3[i]));
 		}
-		ComplexFunction cf = new ComplexFunction("plus", p1,p2);
 		ComplexFunction cf4 = new ComplexFunction("div", new Monom("x"),p3);
+		ComplexFunction cf = new ComplexFunction("plus", p1,p2);
 		cf.div(p1);
 		String s = cf.toString();
 		function cf5 = cf4.initFromString(s);

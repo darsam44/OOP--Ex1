@@ -28,7 +28,7 @@ public class ComplexFunction implements complex_function {
 		break;
 		case "times" :OP = Operation.Times;
 		break;
-		case "divid" :OP = Operation.Divid;
+		case "div" :OP = Operation.Divid;
 		break;
 		case "max" :OP = Operation.Max;
 		break;
