@@ -19,10 +19,10 @@ public class ComplexFunction implements complex_function {
 	public ComplexFunction (String op, function left , function right) {
 
 		if ( left != null ) {
-			this.left = left.copy();
+			this.left = left.initFromString(left.toString());
 		}
 		if ( right != null ) {
-			this.right = right.copy();
+			this.right = right.initFromString(right.toString());
 		}
 
 		switch(op.toLowerCase()) {
@@ -110,7 +110,7 @@ public class ComplexFunction implements complex_function {
 			int last = s.lastIndexOf(')');
 			int split=LocationSplit(s , i+1);
 			String sub1=s.substring(i+1, split);
-			String sub2=s.substring(split+1,last);
+			String sub2=s.substring(split+1,s.length()-1);
 			String sub3 = s.substring(0, i);
 			function left = initFromString(sub1);
 			function right = initFromString(sub2);
@@ -139,6 +139,7 @@ public class ComplexFunction implements complex_function {
 			}
 			if(comma==opener && s.charAt(i) == ',') {
 				locationSplit=i;
+				return locationSplit;
 			}
 			i++;
 		}
@@ -152,14 +153,14 @@ public class ComplexFunction implements complex_function {
 	 */
 	@Override
 	public function copy() {
-		function copy= new ComplexFunction(this.OP.toString(), this.left, this.right);
+		function copy= new ComplexFunction(switchBackOP (), this.left, this.right);
 		return copy;
 	}
 
 	@Override
 	public void plus(function f1) {
 		if ( this.right != null ) {
-			function f = new ComplexFunction(OP.toString(), this.left,this.right);
+			function f = new ComplexFunction(switchBackOP (), this.left,this.right);
 			this.left = f.copy();
 		}
 		this.right = f1.copy();
@@ -169,7 +170,7 @@ public class ComplexFunction implements complex_function {
 	@Override
 	public void mul(function f1) {
 		if ( this.right != null ) {
-			function f = new ComplexFunction(OP.toString(), this.left,this.right);
+			function f = new ComplexFunction(switchBackOP (), this.left,this.right);
 			this.left = f.copy();
 		}
 		this.right = f1.copy();
@@ -179,7 +180,7 @@ public class ComplexFunction implements complex_function {
 	@Override
 	public void div(function f1) {
 		if ( this.right != null ) {
-			function f = new ComplexFunction(OP.toString(), this.left,this.right);
+			function f = new ComplexFunction(switchBackOP (), this.left,this.right);
 			this.left = f.copy();
 		}
 		this.right = f1.copy();
@@ -189,7 +190,7 @@ public class ComplexFunction implements complex_function {
 	@Override
 	public void max(function f1) {
 		if ( this.right != null ) {
-			function f = new ComplexFunction(OP.toString(), this.left,this.right);
+			function f = new ComplexFunction(switchBackOP (), this.left,this.right);
 			this.left = f.copy();
 		}
 		this.right = f1.copy();
@@ -199,7 +200,7 @@ public class ComplexFunction implements complex_function {
 	@Override
 	public void min(function f1) {
 		if ( this.right != null ) {
-			function f = new ComplexFunction(OP.toString(), this.left,this.right);
+			function f = new ComplexFunction(switchBackOP (), this.left,this.right);
 			this.left = f.copy();
 		}
 		this.right = f1.copy();
@@ -209,7 +210,7 @@ public class ComplexFunction implements complex_function {
 	@Override
 	public void comp(function f1) {
 		if ( this.right != null ) {
-			function f = new ComplexFunction(OP.toString(), this.left,this.right);
+			function f = new ComplexFunction(switchBackOP (), this.left,this.right);
 			this.left = f.copy();
 		}
 		this.right = f1.copy();
@@ -318,5 +319,25 @@ public class ComplexFunction implements complex_function {
 		return ans;
 	}
 	
+	private String switchBackOP () {
+		switch (this.OP.toString())
+		{
+		
+		case "Plus": return "plus";
+		
+		case "Divid" : return "div";
+		
+		case "Times" : return "mul";
+		
+		case "Max" : return "max";
+		
+		case "Min" : return "min";
+		
+		case "Comp" :return "comp";
+		
+		default: return "ERROR";
+		}
+		
+	}
 
 }
