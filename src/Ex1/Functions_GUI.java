@@ -156,19 +156,19 @@ public class Functions_GUI implements functions {
 				}
 				// plot the approximation to the function
 				
-//				for (function function : functions_gui) {
-//					
-//					for (double i = rx.get_min(); i < rx.get_max(); i++) {
-//						StdDraw.line(i, this.f(i), i+1, this.f(i+1));
-//					}
-//					
-//				}
-//				for (double i = rx.get_min(); i < rx.get_max(); i++) {
-//					StdDraw.line(i, this.f(i), i+1, this.f(i+1));
-//				}
-//				StdDraw.setPenColor(Color.RED);
-//				StdDraw.setPenRadius(0.01);
-//				StdDraw.point(x[n/2], 1);
+				for (function function : functions_gui) {
+					double step = ( ( Math.abs(rx.get_min()) ) + ( Math.abs(rx.get_max()) )) / resolution;
+					int Red = (int) (Math.random()*256);
+					int Green = (int) (Math.random()*256);
+					int Blue = (int) (Math.random()*256);
+					Color color_line = new Color (Red , Green , Blue);
+					
+					StdDraw.setPenColor(color_line);
+					for (double i = rx.get_min(); i < rx.get_max(); i+=step) {
+						StdDraw.line(i, function.f(i), i+step, function.f(i+step));
+					}
+				}
+				StdDraw.setPenColor(Color.BLACK);
 		
 	}
 
