@@ -19,10 +19,10 @@ public class ComplexFunction implements complex_function {
 	public ComplexFunction (String op, function left , function right) {
 
 		if ( left != null ) {
-			this.left = left.initFromString(left.toString());
+			this.left = left;
 		}
 		if ( right != null ) {
-			this.right = right.initFromString(right.toString());
+			this.right = right;
 		}
 
 		switch(op.toLowerCase()) {
@@ -100,8 +100,7 @@ public class ComplexFunction implements complex_function {
 		int i =0;
 		if ( s.indexOf("(") == -1 && s.indexOf(")") == -1  ) { //returns -1 if the char don't found in the string
 			Polynom poly = new Polynom (s);
-			function function= new ComplexFunction(poly);
-			return function;
+			return poly.initFromString(s);
 		}
 		else {
 			while (s.charAt(i) != '(') {
@@ -114,8 +113,8 @@ public class ComplexFunction implements complex_function {
 			String sub3 = s.substring(0, i);
 			function left = initFromString(sub1);
 			function right = initFromString(sub2);
-			function function= new ComplexFunction(sub3, left, right);
-			return function;
+			function function_new= new ComplexFunction(sub3, left, right);
+			return function_new;
 		}
 
 	}
