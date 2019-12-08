@@ -106,15 +106,23 @@ public class ComplexFunction implements complex_function {
 			while (s.charAt(i) != '(') {
 				i++;
 			}
+			String sub3 = s.substring(0, i);
 			int last = s.lastIndexOf(')');
+			if (sub3.equals("none") || sub3.equals("None")) {
+				String sub1=s.substring(i+1, last);
+				function left = initFromString(sub1);
+				function function_new= new ComplexFunction(left);
+				return function_new;
+			}
+			else {
 			int split=LocationSplit(s , i+1);
 			String sub1=s.substring(i+1, split);
-			String sub2=s.substring(split+1,s.length()-1);
-			String sub3 = s.substring(0, i);
+			String sub2=s.substring(split+1,last);
 			function left = initFromString(sub1);
 			function right = initFromString(sub2);
 			function function_new= new ComplexFunction(sub3, left, right);
 			return function_new;
+			}
 		}
 
 	}
@@ -333,6 +341,8 @@ public class ComplexFunction implements complex_function {
 		case "Min" : return "min";
 		
 		case "Comp" :return "comp";
+		
+		case "None" : return "none";
 		
 		default: return "ERROR";
 		}
