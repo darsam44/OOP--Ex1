@@ -19,10 +19,10 @@ public class ComplexFunction implements complex_function {
 	public ComplexFunction (String op, function left , function right) {
 
 		if ( left != null ) {
-			this.left = left;
+			this.left = left.copy();
 		}
 		if ( right != null ) {
-			this.right = right;
+			this.right = right.copy();
 		}
 
 		switch(op.toLowerCase()) {
