@@ -95,36 +95,36 @@ class ComplexFunctionTest {
 	
 	
 	//checking the min max cases and comp function
-	@Test
-	void test3() {
-		
-		ArrayList<ComplexFunction> CF = new ArrayList<ComplexFunction>();
-		 ComplexFunction cf=new ComplexFunction();
-		 ComplexFunction cf1= (ComplexFunction) cf.initFromString("+x");
-		 CF.add(cf1);
-		 ComplexFunction cf2= (ComplexFunction) cf.initFromString("9");
-		 CF.add(cf2);
-		 ComplexFunction cf3= (ComplexFunction) cf.initFromString("x^2");
-		 CF.add(cf3);
-		 ComplexFunction cf4= (ComplexFunction) cf.initFromString("x^2+9");
-
-		//checking max and min function
-		cf1.comp(cf1);
-		if(!cf1.equals(cf3)) {
-			fail("ERR: "+cf1.toString()+" should be equals to "+cf3.toString());
-		}
-
-		cf3.min(cf1);
-		if(!cf3.equals(cf1)) {
-			fail("ERR: "+cf1.toString()+" should be the min ");
-		}
-		
-		cf3.plus(cf2);
-		if(!cf3.equals(cf4)) {
-			fail("ERR: "+cf3.toString()+" should be equals to "+cf4.toString());
-		}
-		
-	}
+//	@Test
+//	void test3() {
+//		
+//		ArrayList<ComplexFunction> CF = new ArrayList<ComplexFunction>();
+//		 ComplexFunction cf=new ComplexFunction();
+//		 ComplexFunction cf1= (ComplexFunction) cf.initFromString("+x");
+//		 CF.add(cf1);
+//		 ComplexFunction cf2= (ComplexFunction) cf.initFromString("9");
+//		 CF.add(cf2);
+//		 ComplexFunction cf3= (ComplexFunction) cf.initFromString("x^2");
+//		 CF.add(cf3);
+//		 ComplexFunction cf4= (ComplexFunction) cf.initFromString("x^2+9");
+//
+//		//checking max and min function
+//		cf1.comp(cf1);
+//		if(!cf1.equals(cf3)) {
+//			fail("ERR: "+cf1.toString()+" should be equals to "+cf3.toString());
+//		}
+//
+//		cf3.min(cf1);
+//		if(!cf3.equals(cf1)) {
+//			fail("ERR: "+cf1.toString()+" should be the min ");
+//		}
+//		
+//		cf3.plus(cf2);
+//		if(!cf3.equals(cf4)) {
+//			fail("ERR: "+cf3.toString()+" should be equals to "+cf4.toString());
+//		}
+//		
+//	}
 	
 	
 	
