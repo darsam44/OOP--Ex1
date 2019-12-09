@@ -17,7 +17,9 @@ import org.junit.jupiter.api.Test;
 
 class ComplexFunctionTest {
 	public static final double EPS = 0.00001;
-	@Test //check the initfromstring, copy, equals, toString
+
+	//check the initfromstring, copy, equals, toString
+	@Test 
 	void test1() {
 		
 		ArrayList<String> check = new ArrayList<String>();
@@ -61,6 +63,13 @@ class ComplexFunctionTest {
 		
 	}
 	
+	@Test
+	void ComplexFunction_plus()
+	{
+		ComplexFunction cf = new ComplexFunction("Plus(x+3,x^2)");
+		Polynom p1 = new Polynom("x^2+x+3");
+		assertEquals(p1, cf);
+	}
 	
 	//all the edges cases 
 	@Test 
@@ -207,4 +216,16 @@ class ComplexFunctionTest {
 		System.out.println(cf4);
 		System.out.println(cf5);
 	}
+	
+	@Test
+	void testPlus() {
+		Polynom p1 = new Polynom ("x+3");
+		Polynom p2 = new Polynom ("x^2");
+		ComplexFunction cf = new ComplexFunction("plus" , p1 , p2);
+		Polynom p3 = new Polynom("x^2+x+3");
+		assertEquals(p3, cf);
+	}
+	
 }
+
+

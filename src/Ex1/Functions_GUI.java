@@ -107,7 +107,7 @@ public class Functions_GUI implements functions {
 			int loc = line_String.indexOf("f(x)=");
 			line_String = line_String.substring(loc+5); // cut substring of "f(x)="
 			line_String = line_String.strip(); // cut the spaces
-			ComplexFunction cf_new = new ComplexFunction();
+			ComplexFunction cf_new = new ComplexFunction(line_String);
 			cf_new.initFromString(line_String); 
 			functions_gui.add(cf_new); // add the function to the array
 			line_String = reader.readLine(); //skip to the next line

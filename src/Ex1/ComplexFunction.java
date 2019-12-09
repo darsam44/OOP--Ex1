@@ -8,13 +8,6 @@ public class ComplexFunction implements complex_function {
 	function right;
 	Operation OP;
 
-	//Constructor that gets nothing
-	public ComplexFunction () {
-		this.left=null;
-		this.right = null;
-		this.OP = Operation.Error;
-	}
-
 	//build a complex function by the op, left and right 
 	public ComplexFunction (String op, function left , function right) {
 		
@@ -53,6 +46,24 @@ public class ComplexFunction implements complex_function {
 		}
 	}
 
+	public ComplexFunction (String s) {
+		function new_fun = initFromString(s);
+		if (new_fun instanceof ComplexFunction) {
+			ComplexFunction cf_new = (ComplexFunction) new_fun;
+			this.left = cf_new.left.copy();
+			this.right = cf_new.right.copy();
+			this.OP = cf_new.getOp();
+		}
+		else if ( new_fun instanceof Polynom) {
+			Polynom poly = (Polynom) new_fun;
+			this.left = poly.copy();
+			this.OP = Operation.None;
+		}
+		else {
+			 throw new RuntimeException("ERR The Complexfunction isn't vaild ");
+		}
+	}
+	
 	//gets only left function
 	public ComplexFunction (function left) {
 		this.left = left.copy();
