@@ -40,6 +40,7 @@ public class Polynom implements Polynom_able{
 		int i=0;
 		String monom1 = "";
 		while (i <= s.length() ) {
+			//the polynom will get an value of +x^4
 			if (i==0 && (s.charAt(i) == '-' || s.charAt(i)=='+')) {
 				monom1+=s.charAt(i);
 				i++;

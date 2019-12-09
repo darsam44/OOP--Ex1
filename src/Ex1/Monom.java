@@ -104,6 +104,10 @@ public class Monom implements function{
 			if ( a.length() == 1 && a.charAt(0) == '-') {
 				a= "-1";
 			}
+			//monom will get a value of +x^4
+			if( a.length() == 1 && a.charAt(0) == '+') {
+				a="1";
+			}
 			if (a.equals("")) {
 				a= "1";
 			}

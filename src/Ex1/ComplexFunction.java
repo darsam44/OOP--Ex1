@@ -7,7 +7,7 @@ public class ComplexFunction implements complex_function {
 	function left;
 	function right;
 	Operation OP;
-	
+
 	//Constructor that gets nothing
 	public ComplexFunction () {
 		this.left=null;
@@ -15,20 +15,21 @@ public class ComplexFunction implements complex_function {
 		this.OP = Operation.Error;
 	}
 
-	//build a complex function
+	//build a complex function by the op, left and right 
 	public ComplexFunction (String op, function left , function right) {
-
+		
+		
 		if ( left != null ) {
 			this.left = left.copy();
 		}
 		if ( right != null ) {
 			this.right = right.copy();
 		}
+		
 
 		switch(op.toLowerCase()) {
 		case "plus" :OP = Operation.Plus;
 		break;
-		//change times to mul
 		case "mul" :OP = Operation.Times;
 		break;
 		case "div" :OP = Operation.Divid;
@@ -39,14 +40,19 @@ public class ComplexFunction implements complex_function {
 		break;
 		case "comp" :OP = Operation.Comp;
 		break;
-		case "none" :OP = Operation.None;
+		case "none" :
+			//a none case is only with one function
+			if(left != null && right != null ) {
+				 OP = Operation.Error;
+				 throw new RuntimeException("ERR The Complexfunction isn't vaild ");
+			}
+			OP = Operation.None;
 		break;
-		default: OP = Operation.Error;
-		break;
-
+		default:
+			 throw new RuntimeException("ERR The Complexfunction isn't vaild ");
 		}
 	}
-	
+
 	//gets only left function
 	public ComplexFunction (function left) {
 		this.left = left.copy();
@@ -89,8 +95,7 @@ public class ComplexFunction implements complex_function {
 		return 0;
 	}
 
-	
-	//needs to build junit
+
 	@Override
 	/**
 	 * this function gets a string and init it to function 
@@ -115,13 +120,13 @@ public class ComplexFunction implements complex_function {
 				return function_new;
 			}
 			else {
-			int split=LocationSplit(s , i+1);
-			String sub1=s.substring(i+1, split);
-			String sub2=s.substring(split+1,last);
-			function left = initFromString(sub1);
-			function right = initFromString(sub2);
-			function function_new= new ComplexFunction(sub3, left, right);
-			return function_new;
+				int split=LocationSplit(s , i+1);
+				String sub1=s.substring(i+1, split);
+				String sub2=s.substring(split+1,last);
+				function left = initFromString(sub1);
+				function right = initFromString(sub2);
+				function function_new= new ComplexFunction(sub3, left, right);
+				return function_new;
 			}
 		}
 
@@ -153,11 +158,6 @@ public class ComplexFunction implements complex_function {
 		return locationSplit;
 	}
 
-	
-	//needs to build junit
-	/**
-	 * this function will copy the complex function
-	 */
 	@Override
 	public function copy() {
 		function copy= new ComplexFunction(switchBackOP (), this.left, this.right);
@@ -239,33 +239,8 @@ public class ComplexFunction implements complex_function {
 		return this.OP;
 	}
 
-	//needs to build junit
-	/**
-	 * this function check if the object is similar to our complex function
-	 */
+
 	@Override
-	
-	public boolean equals (Object other) {
-		boolean equals=false;
-		int i=-10;
-		function temp=this.initFromString(other.toString());
-		int sim=0;
-		while(i<11) {
-				double ans1=(this.f(i));
-				double ans2= temp.f(i);
-				if((ans1-ans2)<EPS) {
-					sim++;
-					if(sim==21) { //need to be similar on all the values between -10 to 10
-						equals=true;
-					}	
-				}
-			i++;
-		}
-		return equals;
-			
-	}
-/*
-	//the first function that was above
 	public boolean equals (Object other) {
 		boolean equals=false;
 		if (other instanceof ComplexFunction) {
@@ -278,15 +253,32 @@ public class ComplexFunction implements complex_function {
 				}
 			}
 		}
+		if(equals==false) { //answer the problem 
+			int i=-10;
+			function temp=this.initFromString(other.toString());
+			int sim=0;
+			while(i<11) {
+				double ans1=(this.f(i));
+				double ans2= temp.f(i);
+				if((ans1-ans2)<EPS) {
+					sim++;
+					if(sim==21) { //need to be similar on all the values between -10 to 10
+						equals=true;
+					}	
+				}
+				i++;
+			}			
+		}
 		return equals;
+
 	}
 	
-	*/
-	//needs to build junit
-	 /**
-	  * 
-	  * @return string to print the function
-	  */
+	
+	
+	/**
+	 * 
+	 * @return string to print the function
+	 */
 	public String toString() {
 		String ans="";
 		String op ="";
@@ -313,40 +305,43 @@ public class ComplexFunction implements complex_function {
 		}
 		if(this.left!=null) {
 			ans+=this.left;
-			
+
 		}
-		
+
 		if(this.right!=null) {
 			ans+=" , ";
 			ans+=this.right;
 			ans+=")";
 		}
-		
-		
+
+
 		return ans;
 	}
 	
+	
+	
+	/*the function switch the OP name in from upper case to lower case */
 	private String switchBackOP () {
 		switch (this.OP.toString())
 		{
-		
+
 		case "Plus": return "plus";
-		
+
 		case "Divid" : return "div";
-		
+
 		case "Times" : return "mul";
-		
+
 		case "Max" : return "max";
-		
+
 		case "Min" : return "min";
-		
+
 		case "Comp" :return "comp";
-		
+
 		case "None" : return "none";
-		
+
 		default: return "ERROR";
 		}
-		
+
 	}
 
 }
