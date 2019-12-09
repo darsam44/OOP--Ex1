@@ -10,25 +10,22 @@ public class ComplexFunction implements complex_function {
 
 	//build a complex function by the op, left and right 
 	public ComplexFunction (String op, function left , function right) {
-		
-		if (op == null) {
+
+		if (op == null || left==null) {
 			throw new RuntimeException("ERR The Complexfunction isn't vaild ");
 		}
-		
+
 		if((left!=null && right == null) && !op.toLowerCase().equals("none")) {
-			 throw new RuntimeException("ERR The Complexfunction isn't vaild ");
+			throw new RuntimeException("ERR The Complexfunction isn't vaild ");
 		}
-		if(left==null) {
-			 throw new RuntimeException("ERR The Complexfunction isn't vaild ");
-		}
-		
+
 		if ( left != null ) {
 			this.left = left.copy();
 		}
 		if ( right != null ) {
 			this.right = right.copy();
 		}
-		
+
 		switch(op.toLowerCase()) {
 		case "plus" :OP = Operation.Plus;
 		break;
@@ -45,16 +42,17 @@ public class ComplexFunction implements complex_function {
 		case "none" :
 			//a none case is only with one function
 			if(left != null && right != null ) {
-				 OP = Operation.Error;
-				 throw new RuntimeException("ERR The Complexfunction isn't vaild ");
+				OP = Operation.Error;
+				throw new RuntimeException("ERR The Complexfunction isn't vaild ");
 			}
 			OP = Operation.None;
-		break;
+			break;
 		default:
-			 throw new RuntimeException("ERR The Complexfunction isn't vaild ");
+			throw new RuntimeException("ERR The Complexfunction isn't vaild ");
 		}
 	}
 
+	//build a complex function from String
 	public ComplexFunction (String s) {
 		s = s.replaceAll("\\s+", "");
 		function new_fun = initFromString(s);
@@ -70,14 +68,14 @@ public class ComplexFunction implements complex_function {
 			this.OP = Operation.None;
 		}
 		else {
-			 throw new RuntimeException("ERR The Complexfunction isn't vaild ");
+			throw new RuntimeException("ERR The Complexfunction isn't vaild ");
 		}
 	}
-	
+
 	//gets only left function
 	public ComplexFunction (function left) {
 		if (left ==null) {
-			 throw new RuntimeException("ERR The Complexfunction isn't vaild ");
+			throw new RuntimeException("ERR The Complexfunction isn't vaild ");
 		}
 		this.left = left.copy();
 		this.OP = Operation.None;
@@ -93,7 +91,11 @@ public class ComplexFunction implements complex_function {
 
 		case "times" : return this.left.f(x) * this.right.f(x);
 
-		case "divid" : return this.left.f(x) / this.right.f(x);
+		case "divid" : 
+			if (this.left.f(x) == 0 && this.right.f(x) == 0) {
+				throw new RuntimeException("ERR You cant divid 0/0");
+			}
+			return this.left.f(x) / this.right.f(x);
 
 		case "max" : 
 			if (this.left.f(x) > this.right.f(x)) return this.left.f(x);
@@ -284,7 +286,7 @@ public class ComplexFunction implements complex_function {
 			}
 		}
 		if(equals==false) { //answer the problem 
-			int i=-10;
+			double i=-10;
 			function temp=this.initFromString(other.toString());
 			int sim=0;
 			while(i<11) {
@@ -296,15 +298,15 @@ public class ComplexFunction implements complex_function {
 						equals=true;
 					}	
 				}
-				i++;
+				i = i + 0.1;
 			}			
 		}
 		return equals;
 
 	}
-	
-	
-	
+
+
+
 	/**
 	 * 
 	 * @return string to print the function
@@ -347,9 +349,9 @@ public class ComplexFunction implements complex_function {
 
 		return ans;
 	}
-	
-	
-	
+
+
+
 	/*the function switch the OP name in from upper case to lower case */
 	private String switchBackOP () {
 		switch (this.OP.toString())
