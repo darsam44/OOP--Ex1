@@ -11,6 +11,16 @@ public class ComplexFunction implements complex_function {
 	//build a complex function by the op, left and right 
 	public ComplexFunction (String op, function left , function right) {
 		
+		if (op == null) {
+			throw new RuntimeException("ERR The Complexfunction isn't vaild ");
+		}
+		
+		if((left!=null && right == null) && !op.toLowerCase().equals("none")) {
+			 throw new RuntimeException("ERR The Complexfunction isn't vaild ");
+		}
+		if(left==null) {
+			 throw new RuntimeException("ERR The Complexfunction isn't vaild ");
+		}
 		
 		if ( left != null ) {
 			this.left = left.copy();
@@ -19,7 +29,6 @@ public class ComplexFunction implements complex_function {
 			this.right = right.copy();
 		}
 		
-
 		switch(op.toLowerCase()) {
 		case "plus" :OP = Operation.Plus;
 		break;
@@ -47,6 +56,7 @@ public class ComplexFunction implements complex_function {
 	}
 
 	public ComplexFunction (String s) {
+		s = s.replaceAll("\\s+", "");
 		function new_fun = initFromString(s);
 		if (new_fun instanceof ComplexFunction) {
 			ComplexFunction cf_new = (ComplexFunction) new_fun;
@@ -66,6 +76,9 @@ public class ComplexFunction implements complex_function {
 	
 	//gets only left function
 	public ComplexFunction (function left) {
+		if (left ==null) {
+			 throw new RuntimeException("ERR The Complexfunction isn't vaild ");
+		}
 		this.left = left.copy();
 		this.OP = Operation.None;
 	}
@@ -112,7 +125,7 @@ public class ComplexFunction implements complex_function {
 	 * this function gets a string and init it to function 
 	 */
 	public function initFromString(String s) { 
-		s=s.strip();
+		s = s.replaceAll("\\s+", "");
 		int i =0;
 		if ( s.indexOf("(") == -1 && s.indexOf(")") == -1  ) { //returns -1 if the char don't found in the string
 			Polynom poly = new Polynom (s);
@@ -177,6 +190,7 @@ public class ComplexFunction implements complex_function {
 
 	@Override
 	public void plus(function f1) {
+		f1 = f1.copy();
 		if ( this.right != null ) {
 			function f = new ComplexFunction(switchBackOP (), this.left,this.right);
 			this.left = f.copy();
@@ -187,8 +201,9 @@ public class ComplexFunction implements complex_function {
 
 	@Override
 	public void mul(function f1) {
+		f1 = f1.copy();
 		if ( this.right != null ) {
-			function f = new ComplexFunction(switchBackOP (), this.left,this.right);
+			function f = new ComplexFunction(switchBackOP (), this.left.copy(),this.right.copy());
 			this.left = f.copy();
 		}
 		this.right = f1.copy();
@@ -197,6 +212,7 @@ public class ComplexFunction implements complex_function {
 
 	@Override
 	public void div(function f1) {
+		f1 = f1.copy();
 		if ( this.right != null ) {
 			function f = new ComplexFunction(switchBackOP (), this.left,this.right);
 			this.left = f.copy();
@@ -207,6 +223,7 @@ public class ComplexFunction implements complex_function {
 
 	@Override
 	public void max(function f1) {
+		f1 = f1.copy();
 		if ( this.right != null ) {
 			function f = new ComplexFunction(switchBackOP (), this.left,this.right);
 			this.left = f.copy();
@@ -217,6 +234,7 @@ public class ComplexFunction implements complex_function {
 
 	@Override
 	public void min(function f1) {
+		f1 = f1.copy();
 		if ( this.right != null ) {
 			function f = new ComplexFunction(switchBackOP (), this.left,this.right);
 			this.left = f.copy();
@@ -227,6 +245,7 @@ public class ComplexFunction implements complex_function {
 
 	@Override
 	public void comp(function f1) {
+		f1 = f1.copy();
 		if ( this.right != null ) {
 			function f = new ComplexFunction(switchBackOP (), this.left,this.right);
 			this.left = f.copy();

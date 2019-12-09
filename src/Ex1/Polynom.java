@@ -45,7 +45,7 @@ public class Polynom implements Polynom_able{
 				monom1+=s.charAt(i);
 				i++;
 			}
-			
+
 			if(i < s.length() && s.charAt(i)!='+' && s.charAt(i) !='-') {
 				monom1+=s.charAt(i);
 				i++;
@@ -192,31 +192,34 @@ public class Polynom implements Polynom_able{
 	public boolean equals(Object p1) {
 		if (p1 instanceof Polynom ) {
 			Polynom p2 = (Polynom) p1;
-		Iterator <Monom> poly_it = p2.iteretor();
-		boolean flag = false;
-		int i =0;
-		while (poly_it.hasNext()) {
-			flag=false;
-			i++;
-			Monom temp=	poly_it.next();
-			for (Monom monom : Polynom_new) {
-				if (monom.equals(temp) && monom.get_power() == temp.get_power()) {
-					flag=true;
+			Iterator <Monom> poly_it = p2.iteretor();
+			boolean flag = false;
+			int i =0;
+			while (poly_it.hasNext()) {
+				flag=false;
+				i++;
+				Monom temp=	poly_it.next();
+				for (Monom monom : Polynom_new) {
+					if (monom.equals(temp) && monom.get_power() == temp.get_power()) {
+						flag=true;
+					}
+				}
+				if (!flag) {
+					return false;
 				}
 			}
-			if (!flag) {
-				return false;
-			}
+			if ( i != Polynom_new.size()) return false;
+			return true;
 		}
-		if ( i != Polynom_new.size()) return false;
-		return true;
+		else if (p1 instanceof Monom ) {
+			Monom moni_new = new Monom (this.toString());
+			return p1.equals(moni_new);
 		}
-		else {
-			if (p1 instanceof Monom ) {
-				Monom moni_new = new Monom (this.toString());
-				p1.equals(moni_new);
-			}
+		else if (p1 instanceof ComplexFunction) {
+			ComplexFunction func = new ComplexFunction(this.toString());
+			return	func.equals(p1);
 		}
+
 		return false;
 	}
 
@@ -299,7 +302,7 @@ public class Polynom implements Polynom_able{
 		}
 		while ( x0 <= x1) {
 			if (f(x0) > 0) {
-			ans+=(eps*f(x0));
+				ans+=(eps*f(x0));
 			}
 			x0+=eps;
 		}
@@ -329,7 +332,7 @@ public class Polynom implements Polynom_able{
 	/**
 	 * this function remove all the zero's inside the array
 	 */
-	
+
 	private void remove_zero() {
 		for (int i =0 ; i< Polynom_new.size() ; i++) {
 			if (Polynom_new.get(i).get_coefficient() == 0) {

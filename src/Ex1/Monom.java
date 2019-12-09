@@ -223,11 +223,13 @@ public class Monom implements function{
 		double between = this._coefficient - m1._coefficient;
 		if (Math.abs(between) <= EPSILON && this._power == m1._power) return true;
 		}
-		else {
-		if ( other instanceof Polynom) {
+		else if ( other instanceof Polynom) {
 			Polynom poly_new = new Polynom (this.toString());
 			return other.equals(poly_new);
 		}
+		else if (other instanceof ComplexFunction) {
+			ComplexFunction func = new ComplexFunction(this.toString());
+			return	func.equals(other);
 		}
 		return false;
 	}

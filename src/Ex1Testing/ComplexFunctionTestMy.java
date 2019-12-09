@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
 import Ex1.ComplexFunction;
+import Ex1.Monom;
 import Ex1.Polynom;
 import Ex1.function;
 
@@ -24,7 +25,6 @@ class ComplexFunctionTestMy {
 		ComplexFunction cf = new ComplexFunction("plus" , p1 ,p2);
 		String s ="plus(3x^2+4,10x+5)";
 		ComplexFunction cf10 = new ComplexFunction(s);
-		System.out.println(cf10);
 		if (!cf10.equals(cf)) {
 			fail();
 		}
@@ -53,9 +53,23 @@ class ComplexFunctionTestMy {
 		}
 	}
 
+	// need to finish
 	@Test
 	void testInitFromString() {
-		fail("Not yet implemented");
+		ArrayList<ComplexFunction> CF = new ArrayList<ComplexFunction>();
+		ArrayList<function> fun = new ArrayList<function>();
+		String[] polynoms = { "-3x", "5x^5-9x^3", "0", "8+x" };
+		String[] polynoms2 = { "x^2+5", "4+3x", "4x+3", "5x^2" };
+		for(int i=0 ; i<polynoms.length ; i++ ) {
+			Polynom p1 = new Polynom(polynoms[i]);
+			Polynom p2 = new Polynom(polynoms2[i]);
+			CF.add(new ComplexFunction(p1));
+		}
+		String s= CF.get(0).toString();
+		function fu = CF.get(0).initFromString(s);
+		if (!fu.equals(CF.get(0))) {
+			fail();
+		}
 	}
 
 	@Test
@@ -194,37 +208,29 @@ class ComplexFunctionTestMy {
 		}
 		for(int i =0 ; i<4 ; i++) {
 			if (CF2.get(i).f(2) != ans[i]) {
-				double anns = CF2.get(i).f(2);
-				System.out.println(anns);
 				fail();
 			}
 		}
 		
 	}
 
-	@Test
-	void testLeft() {
-		fail("Not yet implemented");
-	}
+//	@Test 
+//	void nullCheck() {
+//		String s =null;
+//		Polynom p = new Polynom ("2x+2");
+//		ComplexFunction cf = new ComplexFunction(s , p ,p);
+//		System.out.println(cf);
+//	}
 
-	@Test
-	void testRight() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetOp() {
-		fail("Not yet implemented");
-	}
-
+	// need to put more
 	@Test
 	void testEqualsObject() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testToString() {
-		fail("Not yet implemented");
+		Polynom p1 = new Polynom("x^2+x+3");
+		ComplexFunction cf = new ComplexFunction("x^2+x+3");
+		assertEquals(cf, p1);
+		if (!cf.equals(cf)) {
+			fail();
+		}
 	}
 
 }
