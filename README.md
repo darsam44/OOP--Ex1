@@ -1,11 +1,11 @@
 # OOP--Ex1
 This project is a continue of ex0 project. 
 In this project we have 4 main class every class represents diffrent kind of object, the class are:
-1.ComplexFunction- this class represents object that is a complex of 2 function. left function and right function and operation between
+1. ComplexFunction- this class represents object that is a complex of 2 function. left function and right function and operation between
 them.the operation are : plus, times, divid, max, min, comp, none and error. 
 2. Function_Gui- this class role is to draw the function graph, we used the stdDraw to draw the garph. 
 3. Monom- this class represnets a monom object.
-4.Polynom-this class represents a polynom object. 
+4. Polynom-this class represents a polynom object. 
 
 ComplexFunction:
 this class include the forward function: ComplexFunction (String op, function left , function right),  ComplexFunction (String s),
