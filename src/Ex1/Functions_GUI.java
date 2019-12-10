@@ -106,10 +106,9 @@ public class Functions_GUI implements functions {
 
 		while (line_String != null ) {
 			line_String = line_String.replaceAll("\\s+", ""); // cut the spaces
-			int loc = line_String.indexOf("f");
-			int loc2 = line_String.indexOf("=");
-			if (loc != -1 && loc2 != -1) {
-				line_String = line_String.substring(loc2+1 ,line_String.length()); // cut substring of "f(x)="
+			int loc = line_String.indexOf("f(x)=");
+			if (loc != -1) {
+				line_String = line_String.substring(loc+"f(x)=".length() ,line_String.length()); // cut substring of "f(x)="
 			}
 			ComplexFunction cf_new = new ComplexFunction(line_String);
 			cf_new.initFromString(line_String); 
@@ -187,7 +186,6 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public void drawFunctions(String json_file) {
-		// TODO Auto-generated method stub
 		JSONParser jsonParser = new JSONParser();
 		int Width = 1000 , Height = 600 ,Resolution = 200;
 		double Range_X [] = {-10 , 10};
@@ -230,12 +228,6 @@ public class Functions_GUI implements functions {
 				Range Ry = new Range(Range_Y[0] , Range_Y[1]);
 				drawFunctions(Width ,Height ,Rx, Ry , Resolution );
 			}
-			
-			
-
-
-
-
 		}
 		catch(Exception e){
 			e.printStackTrace();

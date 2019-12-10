@@ -32,34 +32,23 @@ import Ex1.functions;
  *
  */
 class Functions_GUITest {
-	public static void main(String[] a) {
-		functions data = FunctionsFactory();
-		int w=1000, h=600, res=200;
-		Range rx = new Range(-10,10);
-		Range ry = new Range(-5,15);
-//		data.drawFunctions(w,h,rx,ry,res);
-		String file = "function_file.txt";
-		String file2 = "function_file2.txt";
-		try {
-			data.saveToFile(file);
-			Functions_GUI data2 = new Functions_GUI();
-			data2.initFromFile(file);
-			data.saveToFile(file2);
-		}
-		catch(Exception e) {e.printStackTrace();
-		}
-		
-		String JSON_param_file = "GUI_params.txt";
-		data.drawFunctions(JSON_param_file);
-	}
 	private functions _data=null;
-
 
 	@BeforeEach
 	void setUp() throws Exception {
 		_data = FunctionsFactory();
 	}
 
+	@Test
+	void buildFromFunction() throws IOException{
+		functions data = FunctionsFactory();
+		String file = "function_file.txt";
+		data.saveToFile(file);
+		String JSON_param_file = "GUI_params.txt";
+		data.drawFunctions(JSON_param_file);
+		System.out.println();
+	}
+	
 	@Test
 	void testInitFromFile() throws IOException {
 		Functions_GUI data = new Functions_GUI();
@@ -81,6 +70,14 @@ class Functions_GUITest {
 		data.saveToFile(file);
 	}
 
+	@Test
+	void testDrawFromRead() throws IOException {
+		Functions_GUI data = new Functions_GUI();
+		data.initFromFile("function_file2.txt");
+		String JSON_param_file = "GUI_params.txt";
+		data.drawFunctions(JSON_param_file);
+	}
+	
 	@Test
 	void testDrawFunctions() throws IOException {
 		Functions_GUI data = new Functions_GUI();
