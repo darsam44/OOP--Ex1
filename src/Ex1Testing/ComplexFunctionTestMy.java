@@ -215,7 +215,7 @@ class ComplexFunctionTestMy {
 	}
 	
 	@Test 
-	void testnothing() {
+	void testSpace() {
 		Monom m = new Monom ("x");
 		ComplexFunction f = new ComplexFunction(m);
 		function cf =f.initFromString("4x^  5");
