@@ -76,31 +76,6 @@ public class ComplexFunction implements complex_function {
 			throw new RuntimeException("ERR The Complexfunction isn't vaild ");
 		}
 		this.OP = op;
-		
-//		switch(op.toString().toLowerCase()) {
-//		case "plus" :OP = Operation.Plus;
-//		break;
-//		case "mul" :OP = Operation.Times;
-//		break;
-//		case "div" :OP = Operation.Divid;
-//		break;
-//		case "max" :OP = Operation.Max;
-//		break;
-//		case "min" :OP = Operation.Min;
-//		break;
-//		case "comp" :OP = Operation.Comp;
-//		break;
-//		case "none" :
-//			//a none case is only with one function
-//			if(left != null && right != null ) {
-//				OP = Operation.Error;
-//				throw new RuntimeException("ERR The Complexfunction isn't vaild ");
-//			}
-//			OP = Operation.None;
-//			break;
-//		default:
-//			throw new RuntimeException("ERR The Complexfunction isn't vaild ");
-//		}
 	}
 	
 	//build a complex function from String
