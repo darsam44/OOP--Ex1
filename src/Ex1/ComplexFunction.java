@@ -51,7 +51,58 @@ public class ComplexFunction implements complex_function {
 			throw new RuntimeException("ERR The Complexfunction isn't vaild ");
 		}
 	}
+	
+	
+	public ComplexFunction (Operation op, function left , function right) {
+		if((left != null && right != null) && op.equals(OP.None)) {
+			throw new RuntimeException("ERR The Complexfunction isn't vaild ");
+		}
+		if (op == null || left==null) {
+			throw new RuntimeException("ERR The Complexfunction isn't vaild ");
+		}
 
+		if((left!=null && right == null) && !op.equals(OP.None)) {
+			throw new RuntimeException("ERR The Complexfunction isn't vaild ");
+		}
+
+		if ( left != null ) {
+			this.left = left.copy();
+		}
+		if ( right != null ) {
+			this.right = right.copy();
+		}
+
+		if (op.equals(OP.Error)) {
+			throw new RuntimeException("ERR The Complexfunction isn't vaild ");
+		}
+		this.OP = op;
+		
+//		switch(op.toString().toLowerCase()) {
+//		case "plus" :OP = Operation.Plus;
+//		break;
+//		case "mul" :OP = Operation.Times;
+//		break;
+//		case "div" :OP = Operation.Divid;
+//		break;
+//		case "max" :OP = Operation.Max;
+//		break;
+//		case "min" :OP = Operation.Min;
+//		break;
+//		case "comp" :OP = Operation.Comp;
+//		break;
+//		case "none" :
+//			//a none case is only with one function
+//			if(left != null && right != null ) {
+//				OP = Operation.Error;
+//				throw new RuntimeException("ERR The Complexfunction isn't vaild ");
+//			}
+//			OP = Operation.None;
+//			break;
+//		default:
+//			throw new RuntimeException("ERR The Complexfunction isn't vaild ");
+//		}
+	}
+	
 	//build a complex function from String
 	public ComplexFunction (String s) {
 		s = s.replaceAll("\\s+", "");
@@ -292,7 +343,7 @@ public class ComplexFunction implements complex_function {
 			while(i<11) {
 				double ans1=(this.f(i));
 				double ans2= temp.f(i);
-				if((ans1-ans2)<EPS) {
+				if((Math.abs(ans1-ans2))<EPS) {
 					sim++;
 					if(sim==21) { //need to be similar on all the values between -10 to 10
 						equals=true;
