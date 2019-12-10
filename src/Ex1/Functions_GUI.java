@@ -96,6 +96,7 @@ public class Functions_GUI implements functions {
 		functions_gui.clear();
 	}
 
+	//should be in try and catch- ?
 	@Override
 	public void initFromFile(String file) throws IOException {
 		functions_gui = new ArrayList<function>(); 
@@ -118,9 +119,14 @@ public class Functions_GUI implements functions {
 	//shani
 	@Override
 	public void saveToFile(String file) throws IOException {
-		BufferedWriter writer= new BufferedWriter(new FileWriter(file));
-		writer.write(file);
-		writer.close();		
+		try {
+			BufferedWriter writer= new BufferedWriter(new FileWriter(file));
+			writer.write(file);
+			writer.close();		
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
