@@ -95,6 +95,14 @@ class Functions_GUITest {
 		data.drawFunctions(JSON_param_file);
 	}
 
+	@Test 
+	void testDrawFunctionWithOutParamsFile() throws IOException {
+		Functions_GUI data = new Functions_GUI();
+		data.initFromFile("function_file2.txt");
+		String JSON_param_file = "GUI_param.txt";
+		data.drawFunctions(JSON_param_file);
+	}
+	
 	@Test
 	void testDrawFunctionsIntIntRangeRangeInt() throws IOException {
 		Functions_GUI data = new Functions_GUI();

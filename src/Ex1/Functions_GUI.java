@@ -232,7 +232,10 @@ public class Functions_GUI implements functions {
 			}
 		}
 		catch(Exception e){
-			e.printStackTrace();
+			System.out.println("the file is not found we will use defualt params");
+			Range Rx = new Range(Range_X[0] , Range_X[1]);
+			Range Ry = new Range(Range_Y[0] , Range_Y[1]);
+			drawFunctions(Width ,Height ,Rx, Ry , Resolution );
 		}
 	}
 
