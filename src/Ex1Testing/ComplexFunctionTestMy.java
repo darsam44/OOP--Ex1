@@ -23,6 +23,7 @@ class ComplexFunctionTestMy {
 		if (!cf10.equals(cf)) {
 			fail();
 		}
+		
 	}
 
 	@Test
@@ -211,6 +212,14 @@ class ComplexFunctionTestMy {
 		assertEquals(cf, p);
 		cf.mul(m);
 		assertEquals(cf, p2);
+	}
+	
+	@Test 
+	void testSpace() {
+		Monom m = new Monom ("x");
+		ComplexFunction f = new ComplexFunction(m);
+		function cf =f.initFromString("4x^  5");
+		System.out.println(cf);
 	}
 
 }

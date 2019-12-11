@@ -3,6 +3,7 @@ package Ex1;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -105,9 +106,11 @@ public class Functions_GUI implements functions {
 		String line_String = reader.readLine();
 
 		while (line_String != null ) {
+			line_String = line_String.replaceAll("\\s+", ""); // cut the spaces
 			int loc = line_String.indexOf("f(x)=");
-			line_String = line_String.substring(loc+5); // cut substring of "f(x)="
-			line_String = line_String.strip(); // cut the spaces
+			if (loc != -1) {
+				line_String = line_String.substring(loc+"f(x)=".length() ,line_String.length()); // cut substring of "f(x)="
+			}
 			ComplexFunction cf_new = new ComplexFunction(line_String);
 			cf_new.initFromString(line_String); 
 			functions_gui.add(cf_new); // add the function to the array
@@ -116,21 +119,24 @@ public class Functions_GUI implements functions {
 		reader.close(); //close the reading
 	}
 
-	//shani
 	@Override
 	public void saveToFile(String file) throws IOException {
-		try {
-			BufferedWriter writer= new BufferedWriter(new FileWriter(file));
-			writer.write(file);
-			writer.close();		
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
+
+			FileWriter writer= new FileWriter (file);
+			Iterator<function> funWriter =  functions_gui.iterator();
+			int numberFun =0;
+			
+			while (funWriter.hasNext()) {
+				function f = funWriter.next();
+				writer.write(numberFun + ") " + "f(x)=" + f.toString() + '\n');
+				numberFun++;
+			}
+			writer.close();
 	}
 
 	@Override
 	public void drawFunctions(int width, int height, Range rx, Range ry, int resolution) {
+		int count=0;
 		StdDraw.setCanvasSize(width, height);
 		// rescale the coordinate system
 				StdDraw.setXscale(rx.get_min(), rx.get_max());
@@ -173,6 +179,8 @@ public class Functions_GUI implements functions {
 					for (double i = rx.get_min(); i < rx.get_max(); i+=step) {
 						StdDraw.line(i, function.f(i), i+step, function.f(i+step));
 					}
+					System.out.println(count + ") " + color_line.toString() + " f(x)= "+ function.toString());
+					count++;
 				}
 				StdDraw.setPenColor(Color.BLACK);
 		
@@ -180,7 +188,6 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public void drawFunctions(String json_file) {
-		// TODO Auto-generated method stub
 		JSONParser jsonParser = new JSONParser();
 		int Width = 1000 , Height = 600 ,Resolution = 200;
 		double Range_X [] = {-10 , 10};
@@ -219,14 +226,10 @@ public class Functions_GUI implements functions {
 					Range_Y[i] = iter.next().doubleValue();
 					i++;
 				}
-				Range Rx = new Range(Range_X[1] , Range_X[2]);
-				Range Ry = new Range(Range_Y[1] , Range_Y[2]);
+				Range Rx = new Range(Range_X[0] , Range_X[1]);
+				Range Ry = new Range(Range_Y[0] , Range_Y[1]);
 				drawFunctions(Width ,Height ,Rx, Ry , Resolution );
 			}
-
-
-
-
 		}
 		catch(Exception e){
 			e.printStackTrace();

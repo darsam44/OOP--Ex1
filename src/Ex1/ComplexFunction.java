@@ -51,7 +51,33 @@ public class ComplexFunction implements complex_function {
 			throw new RuntimeException("ERR The Complexfunction isn't vaild ");
 		}
 	}
+	
+	
+	public ComplexFunction (Operation op, function left , function right) {
+		if((left != null && right != null) && op.equals(OP.None)) {
+			throw new RuntimeException("ERR The Complexfunction isn't vaild ");
+		}
+		if (op == null || left==null) {
+			throw new RuntimeException("ERR The Complexfunction isn't vaild ");
+		}
 
+		if((left!=null && right == null) && !op.equals(OP.None)) {
+			throw new RuntimeException("ERR The Complexfunction isn't vaild ");
+		}
+
+		if ( left != null ) {
+			this.left = left.copy();
+		}
+		if ( right != null ) {
+			this.right = right.copy();
+		}
+
+		if (op.equals(OP.Error)) {
+			throw new RuntimeException("ERR The Complexfunction isn't vaild ");
+		}
+		this.OP = op;
+	}
+	
 	//build a complex function from String
 	public ComplexFunction (String s) {
 		s = s.replaceAll("\\s+", "");
@@ -292,7 +318,7 @@ public class ComplexFunction implements complex_function {
 			while(i<11) {
 				double ans1=(this.f(i));
 				double ans2= temp.f(i);
-				if((ans1-ans2)<EPS) {
+				if((Math.abs(ans1-ans2))<EPS) {
 					sim++;
 					if(sim==21) { //need to be similar on all the values between -10 to 10
 						equals=true;
