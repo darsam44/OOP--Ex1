@@ -35,6 +35,7 @@ public class Polynom implements Polynom_able{
 	 * @param s: is a string represents a Polynom
 	 */
 	public Polynom(String s) {
+		s = s.replaceAll("\\s+", "");
 		s=s.toLowerCase();
 		Polynom_new = new ArrayList<Monom>();
 		int i=0;

@@ -24,7 +24,7 @@ class MonomJunitTest {
 
 	@Test
 	void testF() {
-		String[] monoms = {"4x", "-x^2", "8x^3","-5x", "-9x^9"};
+		String[] monoms = {"4 x", "- x ^2", "8 x ^3","-5x", "-9x^9"};
 		double [] testMonoms = {20, -25, 1000,-25, -17578125};
 		for(int i=0;i<monoms.length;i++) {
 			Monom temp=new Monom(monoms[i]);
